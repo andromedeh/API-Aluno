@@ -20,8 +20,13 @@ app.get('/alunos', (req, res) => {
 });
 
 /*Rota para buscar um aluno especifico pelo ID
-...
-*/
+app.put('/alunos'/:id', (req, res) => {
+    const {id} = req.params;
+    const {nome, email, nome_curso} = req.body;
+    const aluno = update(id, {nome, email, nome_curso});
+    res.json(aluno);
+});
+
 
 /*Rota para atualizar informacoes de um aluno
 ...
