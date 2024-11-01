@@ -20,21 +20,25 @@ app.get('/alunos', (req, res) => {
 });
 
 /*Rota para buscar um aluno especifico pelo ID
-app.put('/alunos'/:id', (req, res) => {
+...
+*/
+
+
+//Rota para atualizar informacoes de um aluno
+app.put('/alunos/:id', (req, res) => {
     const {id} = req.params;
     const {nome, email, nome_curso} = req.body;
     const aluno = update(id, {nome, email, nome_curso});
     res.json(aluno);
 });
 
+//Rota para deletar um aluno
+app.delete('/alunos/:id', (req, res) => {
+    const {id} = req.params;
+    remove(id);
+    res.status(204).send();
+});
 
-/*Rota para atualizar informacoes de um aluno
-...
-*/
-
-/*Rota para deletar um aluno
-...
-*/
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
