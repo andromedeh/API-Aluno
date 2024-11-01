@@ -1,8 +1,8 @@
-const {v4: uuidv4} = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 
 let alunos = [];
 
-function create({nome, email, nome_curso}) {  
+function create({ nome, email, nome_curso }) {
     const aluno = {
         id: uuidv4(),
         nome,
@@ -13,8 +13,8 @@ function create({nome, email, nome_curso}) {
     return aluno;
 }
 
-function update(id, {nome, email, nome_curso}) {
-    const index = alunos.findIndex(vaga => vaga.id === id);
+function update(id, { nome, email, nome_curso }) {
+    const index = alunos.findIndex(aluno => aluno.id === id);
     if (index === -1) {
         return null;
     }
@@ -40,9 +40,14 @@ function findAll() {
     return alunos;
 }
 
+function findById(id) {
+    return alunos.find(aluno => aluno.id === id) || null;
+}
+
 module.exports = {
     create,
     update,
     remove,
-    findAll
+    findAll,
+    findById
 }
