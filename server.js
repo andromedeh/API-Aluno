@@ -19,9 +19,16 @@ app.get('/alunos', (req, res) => {
     res.json(alunos);
 });
 
-/*Rota para buscar um aluno especifico pelo ID
-...
-*/
+//Rota para buscar um aluno especifico pelo ID
+app.get('/alunos/:id', (req, res) => {
+    const { id } = req.params;
+    const aluno = findById(id);
+    if (aluno) {
+        res.json(aluno);
+    } else {
+        res.status(404).json({ message: 'Aluno não encontrado' });
+    }
+});
 
 
 //Rota para atualizar informacoes de um aluno
