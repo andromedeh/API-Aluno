@@ -36,14 +36,22 @@ app.put('/alunos/:id', (req, res) => {
     const {id} = req.params;
     const {nome, email, nome_curso} = req.body;
     const aluno = update(id, {nome, email, nome_curso});
-    res.json(aluno);
+    if (aluno) {
+        res.json(aluno);
+    } else {
+        res.status(404).json({ message: 'Aluno não encontrado' });
+    }
 });
 
 //Rota para deletar um aluno
 app.delete('/alunos/:id', (req, res) => {
     const {id} = req.params;
-    remove(id);
-    res.status(204).send();
+    const deleted = remove(id);
+    if (deleted) {
+        res.status(204).send();
+    } else {
+        res.status(404).json({ message: 'Aluno não encontrado' });
+    }
 });
 
 
